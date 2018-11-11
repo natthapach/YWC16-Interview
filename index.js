@@ -102,6 +102,16 @@ app.get('/category/:key', async (req, res) => {
   }
 })
 
+app.get('/range/:start/:end', async (req, res) => {
+  try {
+    const data = await serviceCaller.getData()
+    const response = dataSelector.selectByRangeDate(data, req.params.start, req.params.end)
+    res.json(response)
+  } catch (e) {
+    res.json(e)
+  }
+})
+
 
 
 // ------------- end route zone ------------------
