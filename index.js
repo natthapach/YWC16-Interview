@@ -52,6 +52,26 @@ app.get('/month/:year/:month', async (req, res) => {
   }
 })
 
+app.get('/id/:id', async(req, res) => {
+  try {
+    const data = await serviceCaller.getData()
+    const response = dataSelector.selectById(data, req.params.id)
+    res.json(response)
+  } catch (e) {
+    res.json(e)
+  }
+})
+
+app.get('/title/:key', async(req, res) => {
+  try {
+    const data = await serviceCaller.getData()
+    const response = dataSelector.selectBySubTitle(data, req.params.key)
+    res.json(response)
+  } catch (e) {
+    res.json(e)
+  }
+})
+
 app.get('/topic/:key', async (req, res) => {
   try {
     const data = await serviceCaller.getData()

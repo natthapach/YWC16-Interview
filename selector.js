@@ -24,6 +24,18 @@ class DataSelector {
     const data_selected = jsonpath.query(data, query_str)
     return data_selected
   }
+
+  selectBySubTitle(data, str) {
+    const query_str = `$..[?(/${str}/.test(@.title))]`
+    const data_selected = jsonpath.query(data, query_str)
+    return data_selected
+  }
+
+  selectById(data, id) {
+    const query_str = `$..[?(@.id == '${id}')]`
+    const data_selected = jsonpath.query(data, query_str)
+    return data_selected
+  }
 }
 
 module.exports = {
