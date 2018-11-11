@@ -36,6 +36,12 @@ class DataSelector {
     const data_selected = jsonpath.query(data, query_str)
     return data_selected
   }
+
+  selectByLocationTitle(data, title) {
+    const query_str = `$..[?(@.location.title == '${title}')]`
+    const data_selected = jsonpath.query(data, query_str)
+    return data_selected
+  }
 }
 
 module.exports = {

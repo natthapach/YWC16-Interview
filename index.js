@@ -82,6 +82,16 @@ app.get('/topic/:key', async (req, res) => {
   }
 })
 
+app.get('/location/:title', async (req, res) => {
+  try {
+    const data = await serviceCaller.getData()
+    const response = dataSelector.selectByLocationTitle(data, req.params.title)
+    res.json(response)
+  }catch(e) {
+    res.json(e)
+  }
+})
+
 app.get('/category/:key', async (req, res) => {
   try {
     const data = await serviceCaller.getData()
