@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");    // for create path string
 var app = express();
+var router = express.Router();
 const {serviceCaller} = require('./rest')
 const { dataSelector } = require('./selector')
 
@@ -37,7 +38,7 @@ app.get('/year/:year', async (req, res) => {
     const response = dataSelector.selectByYear(data, req.params.year)
     res.json(response)
   }catch(e) {
-
+    res.json(e)
   }
 })
 
@@ -50,6 +51,19 @@ app.get('/topic/:key', async (req, res) => {
     res.json(e)
   }
 })
+
+app.get('/category/:key', async (req, res) => {
+  try {
+    const data = await serviceCaller.getData()
+    const response = dataSelector.selectByCategory(data, req.params.key)
+    res.json(response)
+  } catch (e) {
+    res.json(e)
+  }
+})
+
+
+
 // ------------- end route zone ------------------
 
 // initialize server
