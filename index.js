@@ -42,6 +42,16 @@ app.get('/year/:year', async (req, res) => {
   }
 })
 
+app.get('/month/:year/:month', async (req, res) => {
+  try {
+    const data = await serviceCaller.getData()
+    const response = dataSelector.selectByMonth(data, req.params.year, req.params.month)
+    res.json(response)
+  } catch (e) {
+    res.json(error)
+  }
+})
+
 app.get('/topic/:key', async (req, res) => {
   try {
     const data = await serviceCaller.getData()

@@ -18,6 +18,12 @@ class DataSelector {
     const data_selected = jsonpath.query(data, query_str)
     return data_selected
   }
+
+  selectByMonth(data, year, month) {
+    const query_str = `$..[?(@.start.year == ${year} && @.start.month == ${month})]`
+    const data_selected = jsonpath.query(data, query_str)
+    return data_selected
+  }
 }
 
 module.exports = {
