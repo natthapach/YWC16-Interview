@@ -2,7 +2,7 @@ const jsonpath = require('jsonpath')
 
 class DataSelector {
   selectByTopic(data, key) {
-    const query_str = `$.topic[?('${key}' in @)]`
+    const query_str = `$..[?(@.topics.indexOf('${key}') != -1)]`
     const data_selected = jsonpath.query(data, query_str)
     return data_selected
   }
